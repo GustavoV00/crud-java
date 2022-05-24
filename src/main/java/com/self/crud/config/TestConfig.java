@@ -3,9 +3,11 @@ package com.self.crud.config;
 import java.time.Instant;
 import java.util.Arrays;
 
+import com.self.crud.entities.Category;
 import com.self.crud.entities.Order;
 import com.self.crud.entities.User;
 import com.self.crud.entities.enums.OrderStatus;
+import com.self.crud.repositories.CategoryRepository;
 import com.self.crud.repositories.OrderRepository;
 import com.self.crud.repositories.UserRepository;
 
@@ -19,6 +21,9 @@ import org.springframework.context.annotation.Profile;
 public class TestConfig implements CommandLineRunner {
 
     @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -26,6 +31,12 @@ public class TestConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        Category cat1 = new Category(0, "Electronics");
+        Category cat2 = new Category(0, "Books");
+        Category cat3 = new Category(0, "Computers");
+
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+
         User u1 = new User(0, "Maria Brown", "maria@gmail.com", "988888888",
                 "123456");
         User u2 = new User(0, "Alex Green", "alex@gmail.com", "977777777",
