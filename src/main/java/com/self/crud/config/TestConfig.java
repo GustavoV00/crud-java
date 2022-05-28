@@ -5,10 +5,12 @@ import java.util.Arrays;
 
 import com.self.crud.entities.Category;
 import com.self.crud.entities.Order;
+import com.self.crud.entities.Product;
 import com.self.crud.entities.User;
 import com.self.crud.entities.enums.OrderStatus;
 import com.self.crud.repositories.CategoryRepository;
 import com.self.crud.repositories.OrderRepository;
+import com.self.crud.repositories.ProductRepository;
 import com.self.crud.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +31,23 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Override
     public void run(String... args) throws Exception {
         Category cat1 = new Category(0, "Electronics");
         Category cat2 = new Category(0, "Books");
         Category cat3 = new Category(0, "Computers");
 
+        Product p1 = new Product(0, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Product p2 = new Product(0, "Smart TV", "0a eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Product p3 = new Product(0, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Product p4 = new Product(0, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Product p5 = new Product(0, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
         User u1 = new User(0, "Maria Brown", "maria@gmail.com", "988888888",
                 "123456");
