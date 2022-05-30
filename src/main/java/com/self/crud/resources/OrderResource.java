@@ -15,23 +15,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/orders")
 public class OrderResource {
 
-    private OrderService orderService;
+  private OrderService orderService;
 
-    public OrderResource(OrderService orderService) {
-        super();
-        this.orderService = orderService;
-    }
+  public OrderResource(OrderService orderService) {
+    super();
+    this.orderService = orderService;
+  }
 
-    @GetMapping
-    public ResponseEntity<List<Order>> findAll() {
-        List<Order> orders = orderService.findAll();
-        return ResponseEntity.ok().body(orders);
-    }
+  @GetMapping
+  public ResponseEntity<List<Order>> findAll() {
+    List<Order> orders = orderService.findAll();
+    return ResponseEntity.ok().body(orders);
+  }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Order> findById(@PathVariable int id) {
-        Order obj = orderService.findById(id);
-        return ResponseEntity.ok().body(obj);
+  @GetMapping(value = "/{id}")
+  public ResponseEntity<Order> findById(@PathVariable int id) {
+    Order obj = orderService.findById(id);
+    return ResponseEntity.ok().body(obj);
 
-    }
+  }
 }

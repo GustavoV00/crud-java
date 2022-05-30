@@ -17,85 +17,85 @@ import com.self.crud.entities.enums.OrderStatus;
 @Entity
 @Table(name = "tb_order")
 public class Order implements Serializable {
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    private Instant moment;
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+  private Instant moment;
 
-    private Integer orderStatus;
+  private Integer orderStatus;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private User client;
+  @ManyToOne
+  @JoinColumn(name = "client_id")
+  private User client;
 
-    public Order() {
-    }
+  public Order() {
+  }
 
-    public Order(int id, Instant moment, OrderStatus orderStatus, User client) {
-        super();
-        this.id = id;
-        this.moment = moment;
-        setOrderStatus(orderStatus);
-        this.client = client;
-    }
+  public Order(int id, Instant moment, OrderStatus orderStatus, User client) {
+    super();
+    this.id = id;
+    this.moment = moment;
+    setOrderStatus(orderStatus);
+    this.client = client;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public Instant getMoment() {
-        return moment;
-    }
+  public Instant getMoment() {
+    return moment;
+  }
 
-    public void setMoment(Instant moment) {
-        this.moment = moment;
-    }
+  public void setMoment(Instant moment) {
+    this.moment = moment;
+  }
 
-    public User getClient() {
-        return client;
-    }
+  public User getClient() {
+    return client;
+  }
 
-    public void setClient(User client) {
-        this.client = client;
-    }
+  public void setClient(User client) {
+    this.client = client;
+  }
 
-    public OrderStatus getOrderStatus() {
-        return OrderStatus.valueOf(orderStatus);
-    }
+  public OrderStatus getOrderStatus() {
+    return OrderStatus.valueOf(orderStatus);
+  }
 
-    public void setOrderStatus(OrderStatus orderStatus) {
-        if (orderStatus != null)
-            this.orderStatus = orderStatus.getCode();
-    }
+  public void setOrderStatus(OrderStatus orderStatus) {
+    if (orderStatus != null)
+      this.orderStatus = orderStatus.getCode();
+  }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + id;
-        return result;
-    }
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + id;
+    return result;
+  }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Order other = (Order) obj;
-        if (id != other.id)
-            return false;
-        return true;
-    }
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Order other = (Order) obj;
+    if (id != other.id)
+      return false;
+    return true;
+  }
 
 }
